@@ -10,6 +10,7 @@ const Article = require('../../models/Article');
 router.get('/', async (req, res) => {
     try {
         await Article.find()
+            .select('-__v')
             .sort({ date: -1 })
             .then(articles => res.status(200).json(articles))
     } catch (e) {
